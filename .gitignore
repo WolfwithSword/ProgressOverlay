@@ -3,6 +3,7 @@ __pycache__/
 build/
 dist/
 Output/
+GithubPics/
 *.ps1
 *.iss
 *.spec
