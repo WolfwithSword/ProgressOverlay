@@ -4,6 +4,7 @@ A simple achievement tracker and counter, compatible as a Browser source in OBS.
 Unique features include:
 
 	* Dynamically adding and removing progress bars
+	* Can track individual achievements via settings page. Values update within 5 seconds.
 	* Ran as a webserver, allowing settings to be changed on any local device
 	* OBS Compatible Browser Source overlay - Customize your progress tracking!
 
