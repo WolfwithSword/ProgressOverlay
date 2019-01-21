@@ -1,0 +1,19 @@
+p {
+	text-shadow: 0 0 0.3em #000000;
+	word-break: normal;
+	white-space:normal;
+}
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+	outline: 1px solid transparent;
+}
+formP {
+	width:130px;
+	float:middle;
+}
+formBar {
+	float:left;
+	height: 104px;
+}

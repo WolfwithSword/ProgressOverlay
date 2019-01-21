@@ -1,0 +1,9 @@
+__pycache__/
+.git/
+build/
+dist/
+Output/
+*.ps1
+*.iss
+*.spec
+*.bat

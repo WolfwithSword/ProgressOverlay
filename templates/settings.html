@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Progress Bars</title>
+	
+	<link rel="shortcut icon" href="{{ url_for('static', filename='progressicon.ico') }}">
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='CircularLoader-v1.3.js') }}"></script>
+	<link rel='stylesheet' href="{{ url_for('static',filename='css/style.css') }}">
+	<link rel='stylesheet' href="{{ url_for('static',filename='css/settings.css') }}">
+	<script type="text/javascript" src="{{ url_for('static',filename='bars.js') }}"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js "></script>
+</head>
+
+<body>
+
+	<div id="page-wrap">
+        <h1>Settings Page</h1>	  
+    </div>
+   
+   <div class="options">
+       <table>
+          <tr>
+              <td><span>Name of bar: </span></td>
+              <td><input id="barName" type="text" value="Template Bar"></td>
+          </tr>
+          <tr>
+              <td>Number of Collectibles:</td>
+              <td><input id="barMax" type="number" value="50"></td>
+          </tr>
+		  <tr>
+			  <td>Starting Value:</td>
+              <td><input id="barVal" type="number" value="0" disabled></td>
+          </tr>
+		  <tr>
+              <td>Colour:</td>
+			  <td><input id="barColour" type="color" value="#e66465"></td>
+
+          </tr>
+		  <br/>
+          <tr>
+              <td></td>
+              <td><div class="buttons"><input class="green" type="button" value="Create/Edit" onclick="addBar()"></div></td>
+          </tr>
+		   <tr>
+              <td></td>
+              <td><div class="buttons"><input class="red" type="button" value="Remove" onclick="removeBar()"></div></td>
+          </tr>
+       </table>
+   </div>
+    <div id="bars">
+	
+	</div>
+    <div class="options" id="achievements">
+        
+    </div>
+
+    <br>
+    
+
+</body>
+
+</html>

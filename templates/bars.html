@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='UTF-8'>
+	
+	<title>Progress Bars</title>
+	
+	<link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+	<link rel='stylesheet' type="text/css" href="{{ url_for('static',filename='css/generic.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='progressicon.ico') }}">
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script src="http://code.jquery.com/jquery-latest.min.js "></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='CircularLoader-v1.3.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='scripts.js') }}"></script>
+	<style id="global_style">
+	* {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	</style>
+	<script>
+		$(function() {
+			$(".meter > span").each(function() {
+				$(this)
+					.data("origWidth", $(this).width())
+					.width(0)
+					.animate({
+						width: $(this).data("origWidth")
+					}, 1200);
+			});
+		});
+	</script>
+	
+
+</head>
+
+<body>
+
+	<div id="page-wrap" style="float:left">
+
+	</div>
+
+	
+</body>
+
+</html>
