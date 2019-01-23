@@ -4,14 +4,18 @@ import errno, os, sys
 import logging
 from logging.handlers import RotatingFileHandler
 from flask import send_from_directory
-from os import path
 import socket
 
 from gevent.pywsgi import WSGIServer
 
 hostname = socket.gethostname()
 IP = socket.gethostbyname(hostname)
-
+if not (os.path.exists('./data')):
+    os.makedirs('data')
+if not (os.path.isfile("./data/progress.json")):
+    with open("./data/progress.json",'w') as f:
+        f.write("{    \"ProgressBars\": [] }")
+        
 asciiArt = """\n
                      .*/(####(((((/*,                      
                  .*(##%&&&&&%%%%%%%%##(/,                  
