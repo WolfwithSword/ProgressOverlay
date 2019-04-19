@@ -26,7 +26,9 @@ Custom Achievement Tracking Loading Bar Circles - Doesn't roll off the tongue we
 
 Initial Version Created 2018-01-21 by WolfwithSword.
 
-Using a modified version of CircularLoader-v1.3.js, Developed by http://technoplugin.com
+Using: 
+			Loading Bars by Loading.io https://loading.io/progress/
+			JSColor http://jscolor.com
 
 __________________________________________________________________________
 Usage:  Run the EXE. Any device on your local network can access the 
