@@ -5,17 +5,17 @@ import logging
 from logging.handlers import RotatingFileHandler
 from flask import send_from_directory
 import socket
-
 from gevent.pywsgi import WSGIServer
 
 hostname = socket.gethostname()
 IP = socket.gethostbyname(hostname)
+
 if not (os.path.exists('./data')):
     os.makedirs('data')
 if not (os.path.isfile("./data/progress.json")):
     with open("./data/progress.json",'w') as f:
         f.write("{    \"ProgressBars\": [] }")
-        
+
 asciiArt = """\n
                      .*/(####(((((/*,                      
                  .*(##%&&&&&%%%%%%%%##(/,                  
@@ -90,7 +90,7 @@ def addData():
                 break
             i+=1
         data['ProgressBars'].append(bar)
-        saveJSON(data)
+        saveJSON(data,"data/progress.json")
         #app.logger.info
         print("Adding Progress Bar {name} with max value {maxvalue}".format(name=bar['name'], maxvalue=bar['maxval']))
     return "OK"
@@ -107,7 +107,7 @@ def editData():
         if (x['name'] == bar['name']):
             data['ProgressBars'][i]['value'] = int(bar['value'])
             data['ProgressBars'][i]['completed'] = bar['completed']
-            saveJSON(data)
+            saveJSON(data,  file = "data/progress.json")
             #app.logger.info
             print("Editing Progress Bar \"{name}\". {val} Total Completed".format(name=bar['name'], val=len(bar['completed'])))
             return "OK"
@@ -125,7 +125,7 @@ def removeData():
         x=data['ProgressBars'][i]
         if (x['name'] == bar['name']):
             data['ProgressBars'].pop(i)
-            saveJSON(data)
+            saveJSON(data, "data/progress.json")
             #app.logger.info
             print("Removing Progress Bar {name}".format(name=bar['name']))
             return "OK"
@@ -150,8 +150,7 @@ def add_header(r):
 #    app.logger.debug('Body: %s', request.get_data())
 #    app.logger.debug('Json: %s', request.json)
 
-def saveJSON(data):
-    file = "data/progress.json"
+def saveJSON(data, file):
     with open(file, 'w') as f:
         json.dump(data,f,indent=4, sort_keys=True)
     

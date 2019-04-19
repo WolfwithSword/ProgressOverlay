@@ -12,6 +12,7 @@
                 13,
                 16,
                 17,
+                25,
                 27,
                 31,
                 38,
@@ -22,30 +23,36 @@
             "enabled": true,
             "maxval": 60,
             "name": "Progress bar 1",
-            "value": 15
+            "value": 16
         },
         {
             "colour": "#3bdb9e",
-            "completed": [],
+            "completed": [
+                2,
+                7,
+                8,
+                14,
+                15,
+                19,
+                20,
+                31
+            ],
             "enabled": true,
             "maxval": 35,
             "name": "Progress bar 2",
-            "value": 0
+            "value": 8
         },
         {
             "colour": "#bcd37b",
             "completed": [
                 1,
                 2,
-                14,
-                15,
-                43,
-                54
+                3
             ],
             "enabled": true,
             "maxval": 10,
             "name": "Progress bar 3",
-            "value": 6
+            "value": 3
         }
     ]
 }

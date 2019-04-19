@@ -3,7 +3,6 @@ $(document).ready(function() {
 	setInterval(function(){updateBarsFromJson() }, 5000);//10000);
 });
 
-
 function createBarsFromJson() {
 	var hostUrl = location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
     $.ajax({
@@ -13,31 +12,25 @@ function createBarsFromJson() {
        dataType : "json",
        success : function(data) {
 		   progBars = "";
-           	for (var x in data.ProgressBars) {
-				obj = data.ProgressBars[x];
-				if (obj.enabled) {
-					var barDiv = "<p class=\"formP\" id=\""+obj.name.replace(/ /g,"_")+"_P"+"\" style=\"width:130px; float:middle;\">"+obj.name+"</p>"
-					barDiv += "<div class=\"formBar\" id=\""+(obj.name.replace(/ /g,"_"))+"\" style=\"margin-left:12px; float:left; height: 104px;\"> </div>";
-					progBars += barDiv;
-				}
-			}
+		   
 			$('#page-wrap').html(progBars);
 			for (var x in data.ProgressBars) {
 				obj = data.ProgressBars[x];
 				if (obj.enabled) {
-					$('#'+obj.name.replace(/ /g,"_")).circularloader({  
-						backgroundColor: "transparent",
-						fontColor: "#cdcdcd",//"#000000",
-						fontSize: "30px",//font size of progress text
-						radius: 38,//radius of circle
-						progressBarBackground: "#cdcdcd",//background colour of circular progress Bar
-						progressBarColor: obj.colour,//colour of circular progress bar
-						progressBarWidth: 14,//progress bar width
-						progressPercent: Math.floor((obj.value/obj.maxval)*100),//progress percentage out of 100
-						progressValue:obj.value,//diplay this value instead of percentage
-						showText: true,//show progress text or not
-						title: "",//show header title for the progress bar				
-					});
+					var barDiv = "<p class=\"formP\" id=\""+obj.name.replace(/ /g,"_")+"_P"+"\" style=\"width:130px; float:middle;\">"+obj.name+"</p>"
+						barDiv += "<div class=\"formBar\" id=\""+(obj.name.replace(/ /g,"_"))+"\" style=\"float:left; height: 104px;\"> </div>";
+						$('#page-wrap').append(barDiv);
+
+						var lbar = new ldBar("#"+obj.name.replace(/ /g,"_"),
+							{
+								"stroke": obj.colour,
+								"stroke-width":15,
+								"preset":"circle",
+								"stroke-trail-width":15,
+								"stroke-trail":"#cdcdcd",
+								"max":obj.maxval
+							});
+						lbar.set(obj.value);
 				}
 			}
            }
@@ -59,32 +52,29 @@ function updateBarsFromJson() {
 				existingBars = existingBars.filter(name => name != obj.name);
 				if($('#'+obj.name.replace(/ /g,"_")).length) 
 				{
-					$('#'+obj.name.replace(/ /g,"_")).circularloader({  
-						progressBarColor: obj.colour,
-						progressPercent: Math.floor((obj.value/obj.maxval)*100),
-						progressValue:obj.value,
-					});
+					var lbar = document.getElementById(obj.name.replace(/ /g,"_")).ldBar;
+					lbar.set(obj.value);
+					// Colours still cannot be changed in real time. May implement function in loading-bar.js to do this. 
+					//lbar.stroke = obj.colour;
 				}
 				else 
 				{
 					if (obj.enabled) {
-					var barDiv = "<p class=\"formP\" id=\""+obj.name.replace(/ /g,"_")+"_P"+"\" style=\"width:130px; float:middle;\">"+obj.name+"</p>"
-					barDiv += "<div class=\"formBar\" id=\""+(obj.name.replace(/ /g,"_"))+"\" style=\"margin-left:12px; float:left; height: 104px;\"> </div>";
-					$('#page-wrap').append(barDiv);
-					$('#'+obj.name.replace(/ /g,"_")).circularloader({  
-						backgroundColor: "transparent",
-						fontColor: "#cdcdcd",//"#000000",
-						fontSize: "30px",//font size of progress text
-						radius: 38,//radius of circle
-						progressBarBackground: "#cdcdcd",//background colour of circular progress Bar
-						progressBarColor: obj.colour,//colour of circular progress bar
-						progressBarWidth: 14,//progress bar width
-						progressPercent: Math.floor((obj.value/obj.maxval)*100),//progress percentage out of 100
-						progressValue:obj.value,//diplay this value instead of percentage
-						showText: true,//show progress text or not
-						title: "",//show header title for the progress bar				
-					});
-				}
+						var barDiv = "<p class=\"formP\" id=\""+obj.name.replace(/ /g,"_")+"_P"+"\" style=\"width:130px; float:middle;\">"+obj.name+"</p>"
+						barDiv += "<div class=\"formBar\" id=\""+(obj.name.replace(/ /g,"_"))+"\" style=\"float:left; height: 104px;\"> </div>";
+						$('#page-wrap').append(barDiv);
+
+						var lbar = new ldBar("#"+obj.name.replace(/ /g,"_"),
+							{
+								"stroke": obj.colour,
+								"stroke-width":13,
+								"preset":"circle",
+								"stroke-trail-width":13,
+								"stroke-trail":"#cdcdcd",
+								"max":obj.maxval
+							});
+						lbar.set(obj.value);
+					}
 				}
 			}
 			for (var i in existingBars)

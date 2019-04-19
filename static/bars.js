@@ -14,7 +14,7 @@ function addBar() {
 		name : $('#barName').val(),
 		value : $('#barVal').val(),
 		maxval : $('#barMax').val(),
-		colour : $('#barColour').val(),
+		colour : document.getElementById("barColour").jscolor.toHEXString(),
 		enabled : true,
 		completed:[]
 	   }),
@@ -70,7 +70,7 @@ function editBar() {
 		name : $('#barName').val(),
 		value : $('#barVal').val(),
 		maxval : $('#barMax').val(),
-		colour : $('#barColour').val(),
+		colour : document.getElementById("barColour").jscolor.toHEXString(),
 		enabled : $('#enabled-'+$('#barName').val().replace(/ /g,"_")).val()
 	   }),
 	   contentType: 'application/json',
